@@ -1,0 +1,6 @@
+content     toggle-headers    chrome/content/
+
+overlay chrome://messenger/content/mailWindowOverlay.xul chrome://toggle-headers/content/toggle-headers.xul
+
+locale toggle-headers en-US chrome/locale/en-US/
+locale toggle-headers de-DE chrome/locale/de-DE/
