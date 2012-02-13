@@ -1,4 +1,4 @@
-function toggleMailHeaders() {
+function toggleHeadersView() {
     
     var currentHeaderSetting = gPrefBranch.getIntPref("mail.show_headers");
     

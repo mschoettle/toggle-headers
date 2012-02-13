@@ -6,7 +6,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>toggle-headers@mattsch.com</em:id>
     <em:name>Toggle Headers</em:name>
-    <em:version>0.1</em:version>
+    <em:version>0.2</em:version>
     <em:type>2</em:type>
     <em:description>Allows toggling the message header setting through a keyboard shortcut.</em:description>
     <em:creator>Matthias Schoettle</em:creator>
@@ -15,8 +15,8 @@
     <em:targetApplication>
       <Description>
         <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
-        <em:minVersion>3.1.*</em:minVersion>
-        <em:maxVersion>11.*</em:maxVersion>
+        <em:minVersion>2.0</em:minVersion>
+        <em:maxVersion>12.*</em:maxVersion>
       </Description>
     </em:targetApplication>
    
