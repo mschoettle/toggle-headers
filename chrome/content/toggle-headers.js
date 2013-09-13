@@ -1,9 +1,12 @@
 var toggleHeaders = {
-  compactHeadersWasCollapsed: false
+  compactHeadersWasCollapsed: false,
 }
 
 toggleHeaders.toggleHeadersView = function() {
-    var currentHeaderSetting = gPrefBranch.getIntPref("mail.show_headers");
+    // Get the preferences mail branch
+    var mailPrefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("mail.");
+    
+    var currentHeaderSetting = mailPrefs.getIntPref("show_headers");
     
     // normal headers
     if (currentHeaderSetting == 1) {
