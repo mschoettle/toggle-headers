@@ -11,10 +11,10 @@
 	</stringbundleset>
     
     <keyset>
-        <key id="toggleHeadersViewKey" key="&toggleHeadersView.key;" oncommand="toggleHeaders.toggleHeadersView();"/>
+        <key id="toggleHeadersViewKey" key="&toggleHeadersView.key;" oncommand="com_mattsch_toggleHeaders.toggleHeadersView();"/>
     </keyset>
     
     <menupopup id="menu_View_Popup">
-        <menuitem id="toggle-headers-view-item" oncommand="toggleHeaders.toggleHeadersView();" label="&toggleHeadersView.label;" accesskey="&toggleHeadersView.accesskey;" key="toggleHeadersViewKey" insertafter="viewheadersmenu" />
+        <menuitem id="toggle-headers-view-item" oncommand="com_mattsch_toggleHeaders.toggleHeadersView();" label="&toggleHeadersView.label;" accesskey="&toggleHeadersView.accesskey;" key="toggleHeadersViewKey" insertafter="viewheadersmenu" />
     </menupopup>
 </overlay>

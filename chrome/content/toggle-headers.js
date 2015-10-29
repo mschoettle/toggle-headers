@@ -1,8 +1,8 @@
-var toggleHeaders = {
+var com_mattsch_toggleHeaders = {
     compactHeadersWasCollapsed: false,
 }
 
-toggleHeaders.toggleHeadersView = function() {
+com_mattsch_toggleHeaders.toggleHeadersView = function() {
     // Get the preferences mail branch
     var mailPrefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("mail.");
     
@@ -18,7 +18,7 @@ toggleHeaders.toggleHeadersView = function() {
     }
     
     // additional behavior in case CompactHeader is installed
-    toggleHeaders.handleCompactHeader(currentHeaderSetting);    
+    com_mattsch_toggleHeaders.handleCompactHeader(currentHeaderSetting);    
 }
 
 // If compact headers is installed and the headers view is collapsed
@@ -26,7 +26,7 @@ toggleHeaders.toggleHeadersView = function() {
 // In that case the view has to be expanded and once normal headers
 // will be viewed again it will be switched back to the collapsed view.
 // (this solution only works when Thunderbird is not started with all headers shown)
-toggleHeaders.handleCompactHeader = function(oldHeaderSetting) {
+com_mattsch_toggleHeaders.handleCompactHeader = function(oldHeaderSetting) {
     // check if CompactHeaders is installed
     var compactHeaders = document.getElementById('CompactHeader_collapsedHeaderView');
     
@@ -38,21 +38,21 @@ toggleHeaders.handleCompactHeader = function(oldHeaderSetting) {
             // if normal headers were viewed just expand the headers view
             if (oldHeaderSetting == 1) {
                 org.mozdev.compactHeader.pane.coheToggleHeaderView();
-                toggleHeaders.compactHeadersWasCollapsed = true;
+                com_mattsch_toggleHeaders.compactHeadersWasCollapsed = true;
             }
             // if the headers view was collapsed during showing all headers
             // normal headers will be shown now which would be wrong behavior
             else if (oldHeaderSetting == 2) {
                 org.mozdev.compactHeader.pane.coheToggleHeaderView();
                 goDoCommand('cmd_viewAllHeader');
-                toggleHeaders.compactHeadersWasCollapsed = true;
+                com_mattsch_toggleHeaders.compactHeadersWasCollapsed = true;
             }
         }
         // header view is expanded but was previously collapsed
         // so collapse them again
-        else if (compactHeaders.collapsed && toggleHeaders.compactHeadersWasCollapsed) {
+        else if (compactHeaders.collapsed && com_mattsch_toggleHeaders.compactHeadersWasCollapsed) {
             org.mozdev.compactHeader.pane.coheToggleHeaderView();
-            toggleHeaders.compactHeadersWasCollapsed = false;
+            com_mattsch_toggleHeaders.compactHeadersWasCollapsed = false;
         }    
     }
 }
