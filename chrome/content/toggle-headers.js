@@ -1,5 +1,5 @@
 var toggleHeaders = {
-  compactHeadersWasCollapsed: false,
+    compactHeadersWasCollapsed: false,
 }
 
 toggleHeaders.toggleHeadersView = function() {
