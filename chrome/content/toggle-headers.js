@@ -3,21 +3,21 @@ var com_mattsch_toggleHeaders = {
 }
 
 com_mattsch_toggleHeaders.toggleHeadersView = function() {
-    // Get the preferences mail branch
+    // Get the preferences mail branch...
     var mailPrefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("mail.");
     
     var currentHeaderSetting = mailPrefs.getIntPref("show_headers");
     
-    // normal headers
+    // Switch from normal to all headers.
     if (currentHeaderSetting == 1) {
         goDoCommand('cmd_viewAllHeader');
     }
-    // all headers
+    // Switch from all to normal headers.
     else if (currentHeaderSetting == 2) {
         goDoCommand('cmd_viewNormalHeader');
     }
     
-    // additional behavior in case CompactHeader is installed
+    // Handle aditional necessary behaviour if CompactHeaders is installed.
     com_mattsch_toggleHeaders.handleCompactHeader(currentHeaderSetting);    
 }
 
@@ -27,29 +27,30 @@ com_mattsch_toggleHeaders.toggleHeadersView = function() {
 // will be viewed again it will be switched back to the collapsed view.
 // (this solution only works when Thunderbird is not started with all headers shown)
 com_mattsch_toggleHeaders.handleCompactHeader = function(oldHeaderSetting) {
-    // check if CompactHeaders is installed
+    // Check if CompactHeaders is installed...
     var compactHeaders = document.getElementById('CompactHeader_collapsedHeaderView');
     
     if (compactHeaders != null) {
-        // somehow collapsed means the opposite
+        // Somehow collapsed means the opposite:
         // collapsed = true: expanded
         // collapsed = false: collapsed
         if (!compactHeaders.collapsed) {
-            // if normal headers were viewed just expand the headers view
+            // If normal headers were enabled before, just expand the headers view...
             if (oldHeaderSetting == 1) {
                 org.mozdev.compactHeader.pane.coheToggleHeaderView();
                 com_mattsch_toggleHeaders.compactHeadersWasCollapsed = true;
             }
-            // if the headers view was collapsed during showing all headers
-            // normal headers will be shown now which would be wrong behavior
+            // If the headers view was collapsed and all headers enabled,
+            // normal headers will be shown now which would be wrong behavior.
+            // Just show expand the headers view instead.
             else if (oldHeaderSetting == 2) {
                 org.mozdev.compactHeader.pane.coheToggleHeaderView();
                 goDoCommand('cmd_viewAllHeader');
                 com_mattsch_toggleHeaders.compactHeadersWasCollapsed = true;
             }
         }
-        // header view is expanded but was previously collapsed
-        // so collapse them again
+        // Header view is expanded, but was previously collapsed.
+        // This means we need to collapse it back again.
         else if (compactHeaders.collapsed && com_mattsch_toggleHeaders.compactHeadersWasCollapsed) {
             org.mozdev.compactHeader.pane.coheToggleHeaderView();
             com_mattsch_toggleHeaders.compactHeadersWasCollapsed = false;
