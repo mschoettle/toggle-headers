@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+
+<project name="toggle-headers" default="build" basedir=".">
+  <property name="src.dir" value="." />
+  <property name="build.dir" value="${src.dir}/build/"/>
+
+  <!-- See: https://stackoverflow.com/a/55600741 -->
+  <macrodef name="json-properties">
+    <attribute name="jsonFile"/>
+    <sequential>
+      <local name="_jsonFile"/>
+        <property name="_jsonFile" value="@{jsonFile}"/>
+        <script language="javascript">//<![CDATA[
+           var json = new Packages.java.lang.String(
+               Packages.java.nio.file.Files.readAllBytes(
+                   Packages.java.nio.file.Paths.get(project.getProperty("_jsonFile"))), "UTF-8");
+           var properties = JSON.parse(json);
+           for(key in properties) {
+               project.setProperty(key, properties[key].toString().toLowerCase().replaceAll(' ', '-'));
+           }
+    //]]></script>
+    </sequential>
+  </macrodef>
+
+  <target name="print">
+    <json-properties jsonFile="${src.dir}/manifest.json"/>
+    <echo message="version ${version}"/>
+    <echo message="name ${name}"/>
+  </target>
+
+  <target name="clean">
+    <json-properties jsonFile="${src.dir}/manifest.json"/>
+    <delete file="${dist.dir}/${name}-${version}.xpi" />
+  </target>
+
+  <target name="build">
+    <json-properties jsonFile="${src.dir}/manifest.json"/>
+    <zip destfile="${build.dir}/${name}-${version}.xpi">
+      <fileset dir="${src.dir}">
+        <include name="chrome.manifest" />
+        <include name="defaults/**" />
+        <include name="chrome/**" />
+        <include name="manifest.json" />
+        <exclude name="**/.*" />
+      </fileset>
+    </zip>
+  </target>
+
+</project>
