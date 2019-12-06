@@ -18,7 +18,7 @@ com_mattsch_toggleHeaders.toggleHeadersView = function() {
     }
     
     // Handle aditional necessary behaviour if CompactHeaders is installed.
-    com_mattsch_toggleHeaders.handleCompactHeader(currentHeaderSetting);    
+    com_mattsch_toggleHeaders.handleCompactHeader(currentHeaderSetting);
 }
 
 // If compact headers is installed and the headers view is collapsed
@@ -55,12 +55,6 @@ com_mattsch_toggleHeaders.handleCompactHeader = function(oldHeaderSetting) {
         // This means we need to collapse it back again.
         else if (compactHeadersView.collapsed && com_mattsch_toggleHeaders.compactHeadersWasCollapsed) {
             compactHeaders.pane.coheToggleHeaderView();
-            
-            // Workaround for bug in CH 2.1.0 that prevents to properly collapse back.
-            if (typeof org_mozdev_compactHeader !== 'undefined') {
-                compactHeaders.pane.coheToggleHeaderView();
-                compactHeaders.pane.coheToggleHeaderView();
-            }
                         
             com_mattsch_toggleHeaders.compactHeadersWasCollapsed = false;
         }    
