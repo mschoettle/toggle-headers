@@ -4,7 +4,8 @@
   "version": "3.0",
   "author": "Matthias Schoettle",
   "homepage_url": "https://mattsch.com",
-  "description": "Allows toggling the message header setting through a keyboard shortcut (ShiH).",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
   "applications": {
     "gecko": {
       "id": "toggle-headers@mattsch.com",
