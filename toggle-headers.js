@@ -1,5 +1,6 @@
-var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { ExtensionCommon } = ChromeUtils.importESModule(
+  "resource://gre/modules/ExtensionCommon.sys.mjs"
+);
 
 var toggleHeadersApi = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
@@ -23,17 +24,6 @@ var toggleHeadersApi = class extends ExtensionCommon.ExtensionAPI {
           // Switch from all to normal headers.
           else if (currentHeaderSetting == 2) {
             window.goDoCommand('cmd_viewNormalHeader');
-          }
-
-          // Get all current windows to reload the message in them.
-          let windows = Services.wm.getEnumerator(null)
-          while (windows.hasMoreElements()) {
-            let currentWindow = windows.getNext()
-            
-            // The main window has already been reloaded.
-            if (currentWindow != window) {
-              currentWindow.ReloadMessage();
-            }
           }
         },
       }
