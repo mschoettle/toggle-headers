@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Toggle Headers",
-  "version": "3.0",
+  "version": "4.0",
   "author": "Matthias Schoettle",
   "homepage_url": "https://mattsch.com",
   "description": "__MSG_extensionDescription__",
@@ -9,7 +9,7 @@
   "applications": {
     "gecko": {
       "id": "toggle-headers@mattsch.com",
-      "strict_min_version": "74.0"
+      "strict_min_version": "128.0"
     }
   },
   "experiment_apis": {
